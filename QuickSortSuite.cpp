@@ -12,55 +12,36 @@ namespace QuickSortSuite
 		
 		TEST_METHOD(TestQuickSort1)
 		{
-			int counttrue = 0;
 			int expected[] = {-5, -3, 0, 3, 4};
-			int actual[] = {0, 3, -1, 4, -5};
-			Sort S(actual, 5);
-			S.quicksort(0, 4);
+			int actual[] = {0, 3, -3, 4, -5};
+			QuickSort S(actual, 5);
+			S.Sort();
 			for (int i = 0; i < 5; i++) {
-				if (expected[i] == actual[i]) {
-					counttrue += 1;
-				}
-			}
-			if (counttrue == 5) {
-				Logger::WriteMessage("Successful Quick Sort");
+				Assert::AreEqual(expected[i], S[i]);
 			}
 		}
 		TEST_METHOD(TestQuickSort2)
 		{
-			int counttrue = 0;
 			int expected[] = {-5, -5, 0, 3, 4, 5, 6};
 			int actual[] = {0, 3, 5, -5, 6, 4, -5};
-			Sort S(actual, 7);
-			S.quicksort(0, 6); 
+			QuickSort S(actual, 7);
+			S.Sort(); 
 			for (int i = 0; i < 7; i++) {
-				if (expected[i] == actual[i]) {
-					counttrue += 1;
-				}
-			}
-			if (counttrue == 7) {
-				Logger::WriteMessage("Successful Quick Sort");
+				Assert::AreEqual(expected[i], S[i]);
 			}
 		}
 		TEST_METHOD(TestQuickSort3)
 		{
-			int counttrue = 0;
 			int expected[] = {-1, -1, -1, -1, -1, -1};
 			int actual[] = {-1, -1, -1, -1, -1, -1};
-			Sort S(actual, 6);
-			S.quicksort(0, 5);
+			QuickSort S(actual, 6);
+			S.Sort();
 			for (int i = 0; i < 6; i++) {
-				if (expected[i] == actual[i]) {
-					counttrue += 1;
-				}
-			}
-			if (counttrue == 6) {
-				Logger::WriteMessage("Successful Quick Sort");
+				Assert::AreEqual(expected[i], S[i]);
 			}
 		}
 		TEST_METHOD(TestQuickSort4)
 		{
-			int counttrue = 0;
 			int expected[] = {-50, -49, -48, -47, -46, -45, -44, -43, -42, -41, -40, -39, 
 							  -38, -37, -36, -35, -34, -33, -32, -31, -30, -29, -28, -27, 
 							  -26, -25, -24, -23, -22, -21, -20, -19, -18, -17, -16, -15, 
@@ -77,15 +58,10 @@ namespace QuickSortSuite
 							-16, 41, -37, -3, 37, 14, -13, 22, 31, 24, -47, -34, -39, 23, -10, 
 							26, -14, -17, -11, -18, -9, -23, 35, -5
 							};
-			Sort S(actual, 100);
-			S.quicksort(0, 99);
+			QuickSort S(actual, 100);
+			S.Sort();
 			for (int i = 0; i < 100; i++) {
-				if (expected[i] == actual[i]) {
-					counttrue += 1;
-				}
-			}
-			if (counttrue == 100) {
-				Logger::WriteMessage("Successful Quick Sort");
+				Assert::AreEqual(expected[i], S[i]);
 			}
 		}
 		TEST_METHOD(TestQuickSort5)
@@ -93,8 +69,8 @@ namespace QuickSortSuite
 			int* arr = new int[0];
 			try
 			{
-				Sort S(arr, 0);
-				S.quicksort(0, -1);
+				QuickSort S(arr, 0);
+				S.Sort();
 			}
 			catch (const std::exception& p1)
 			{
@@ -107,8 +83,8 @@ namespace QuickSortSuite
 			int* arr = NULL;
 			try
 			{
-				Sort S(arr, 0);
-				S.quicksort(0, -1);
+				QuickSort S(arr, 0);
+				S.Sort();
 			}
 			catch (const std::exception& p1)
 			{

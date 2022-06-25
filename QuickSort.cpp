@@ -3,10 +3,14 @@
 
 using namespace std;
 
-class Sort {
+class ISorter {
+	void Sort();
+};
+
+class QuickSort : public ISorter {
 private:
-	int* sarr;
-	int size;
+	int* _arr;
+	int _size;
 	void swap(int* a, int* b) {
 		int temp = *a;
 		*a = *b;
@@ -34,30 +38,37 @@ private:
 		swap(&arr[big + 1], &arr[last]);
 		return (big + 1);
 	}
+	void quicksort(int first, int last) {
+		if (first >= last || first < 0) {
+			return;
+		}
+		int pivot = partition(this->_arr, first, last);
+		quicksort(first, pivot - 1);
+		quicksort(pivot + 1, last);
+		return;
+	}
 public:
-	Sort(int* arr, int size) {
+	QuickSort(int* arr, int size) {
 		if (arr != nullptr) {
-			this->size = size;
-			sarr = new int[this->size];
+			this->_size = size;
+			_arr = new int[this->_size];
 			for (int i = 0; i < size; i++) {
-				sarr[i] = arr[i];
+				_arr[i] = arr[i];
 			}
 		}
 		else {
 			throw exception("you try to input empty array");
 		}
 	}
-	~Sort(){
-		delete[] sarr;
+	~QuickSort(){
+		delete[] _arr;
 	}
-	void quicksort(int first, int last) {
-		if (first >= last || first < 0) {
-			return;
-		}
-		int pivot = partition(this->sarr, first, last);
-		quicksort(first, pivot - 1);
-		quicksort(pivot + 1, last);
-		return;
+	void Sort() {
+		quicksort(0, this->_size - 1);		
+	}
+	int operator [] (const int& index) const
+	{
+		return this->_arr[index];
 	}
 };
 
