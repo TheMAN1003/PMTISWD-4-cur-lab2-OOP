@@ -4,31 +4,15 @@
 using namespace std;
 
 class Sort {
-public:
-	Sort(){
-		cout << "Hey :)" << endl;
-	}
-	~Sort(){
-		cout << "Bye :(" << endl;
-	}
-	void input(int arr[], int size) {
-		for (int i = 0; i < size; i++) {
-			cin >> arr[i];
-		}
-	}
-	void print(int arr[], int size) {
-		cout << "[";
-		for (int i = 0; i < size - 1; i++) {
-			cout << arr[i] << ", ";
-		}
-		cout << arr[size - 1] <<  "]" << endl;
-	}
+private:
+	int* sarr;
+	int size;
 	void swap(int* a, int* b) {
 		int temp = *a;
 		*a = *b;
 		*b = temp;
 	}
-	int partition(int arr[], int first, int last) {
+	int partition(int* arr, int first, int last) {
 		int mdn = floor((first + last) / 2);
 		if (arr[mdn] < arr[first]) {
 			swap(&arr[first], &arr[mdn]);
@@ -50,13 +34,29 @@ public:
 		swap(&arr[big + 1], &arr[last]);
 		return (big + 1);
 	}
-	void quicksort(int arr[], int first, int last) {
+public:
+	Sort(int* arr, int size) {
+		if (arr != nullptr) {
+			this->size = size;
+			sarr = new int[this->size];
+			for (int i = 0; i < size; i++) {
+				sarr[i] = arr[i];
+			}
+		}
+		else {
+			throw exception("you try to input empty array");
+		}
+	}
+	~Sort(){
+		delete[] sarr;
+	}
+	void quicksort(int first, int last) {
 		if (first >= last || first < 0) {
 			return;
 		}
-		int pivot = partition(arr, first, last);
-		quicksort(arr, first, pivot - 1);
-		quicksort(arr, pivot + 1, last);
+		int pivot = partition(this->sarr, first, last);
+		quicksort(first, pivot - 1);
+		quicksort(pivot + 1, last);
 		return;
 	}
 };
