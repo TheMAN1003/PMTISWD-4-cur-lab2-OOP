@@ -17,7 +17,7 @@ namespace QuickSortSuite
 			QuickSort S(actual, 5);
 			S.Sort();
 			for (int i = 0; i < 5; i++) {
-				Assert::AreEqual(expected[i], S[i]);
+				Assert::AreEqual(expected[i], actual[i]);
 			}
 		}
 		TEST_METHOD(TestQuickSort2)
@@ -27,7 +27,7 @@ namespace QuickSortSuite
 			QuickSort S(actual, 7);
 			S.Sort(); 
 			for (int i = 0; i < 7; i++) {
-				Assert::AreEqual(expected[i], S[i]);
+				Assert::AreEqual(expected[i], actual[i]);
 			}
 		}
 		TEST_METHOD(TestQuickSort3)
@@ -37,7 +37,7 @@ namespace QuickSortSuite
 			QuickSort S(actual, 6);
 			S.Sort();
 			for (int i = 0; i < 6; i++) {
-				Assert::AreEqual(expected[i], S[i]);
+				Assert::AreEqual(expected[i], actual[i]);
 			}
 		}
 		TEST_METHOD(TestQuickSort4)
@@ -61,7 +61,7 @@ namespace QuickSortSuite
 			QuickSort S(actual, 100);
 			S.Sort();
 			for (int i = 0; i < 100; i++) {
-				Assert::AreEqual(expected[i], S[i]);
+				Assert::AreEqual(expected[i], actual[i]);
 			}
 		}
 		TEST_METHOD(TestQuickSort5)

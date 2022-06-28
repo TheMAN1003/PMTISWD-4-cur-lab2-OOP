@@ -12,9 +12,7 @@ private:
 	int* _arr;
 	int _size;
 	void swap(int* a, int* b) {
-		int temp = *a;
-		*a = *b;
-		*b = temp;
+		(((*a) ^ (*b)) && ((*b) ^= (*a) ^= (*b), (*a) ^= (*b)));
 	}
 	int partition(int* arr, int first, int last) {
 		int mdn = floor((first + last) / 2);
@@ -51,24 +49,15 @@ public:
 	QuickSort(int* arr, int size) {
 		if (arr != nullptr) {
 			this->_size = size;
-			_arr = new int[this->_size];
-			for (int i = 0; i < size; i++) {
-				_arr[i] = arr[i];
-			}
+			_arr = arr;
 		}
 		else {
 			throw exception("you try to input empty array");
 		}
 	}
-	~QuickSort(){
-		delete[] _arr;
-	}
+	~QuickSort(){}
 	void Sort() {
 		quicksort(0, this->_size - 1);		
-	}
-	int operator [] (const int& index) const
-	{
-		return this->_arr[index];
 	}
 };
 
